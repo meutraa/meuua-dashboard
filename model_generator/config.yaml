@@ -1,0 +1,111 @@
+Command:
+  properties:
+    name:
+      type: string
+      required: true
+      jsonKey: Name
+    template:
+      type: string
+      required: true
+      jsonKey: Template
+
+ChannelSettings:
+    properties:
+      channelId:
+        type: string
+        required: true
+        jsonKey: ChannelID
+      autoReplyEnabled:
+        type: bool
+        required: true
+        jsonKey: AutoreplyEnabled
+        non_final: true
+      autoReplyFrequency:
+        type: double
+        required: true
+        jsonKey: AutoreplyFrequency
+        non_final: true
+      replySafety:
+        type: int
+        required: true
+        jsonKey: ReplySafety
+        non_final: true
+      openaiToken:
+        type: NullString
+        required: true
+        jsonKey: OpenaiToken
+        non_final: true
+      createdAt:
+        type: datetime
+        required: true
+        jsonKey: CreatedAt
+      updatedAt:
+        type: NullDateTime
+        required: true
+        jsonKey: UpdatedAt
+
+NullString:
+  properties:
+    string:
+      type: string
+      required: true
+      jsonKey: String
+      non_final: true
+    valid:
+      type: bool
+      required: true
+      jsonKey: Valid
+      non_final: true
+
+NullDateTime:
+  properties:
+    time:
+      type: datetime
+      required: true
+      jsonKey: Time
+    valid:
+      type: bool
+      required: true
+      jsonKey: Valid
+
+TwitchUserResponse:
+  properties:
+    data:
+      type: array
+      items:
+        type: User
+
+User:
+  properties:
+    id:
+      type: string
+      required: true
+    login:
+      type: string
+      required: true
+    displayName:
+      type: string
+      jsonKey: display_name
+      required: true
+    broadcasterType:
+      type: string
+      jsonKey: broadcaster_type
+      required: true
+    description:
+      type: string
+      required: true
+    profileImageUrl:
+      type: string
+      jsonKey: profile_image_url
+      required: true
+    offline_image_url:
+      type: string
+      jsonKey: offline_image_url
+      required: true
+    viewCount:
+      type: int
+      jsonKey: view_count
+      required: true
+    created_at:
+      type: datetime
+      jsonKey: created_at
