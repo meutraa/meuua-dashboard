@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../api.dart';
 import '../drawer.dart';
 import '../main.dart';
+import '../mixin_value_notifier.dart';
 import '../model/user.dart';
 import 'channel_settings.dart';
 import 'channels.dart';
@@ -20,7 +21,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage>
+    with ValueNotifierMixin<HomePage, User?> {
   int _currentPage = 0;
   int _previousPage = 0;
   String title = 'Channels';
@@ -39,6 +41,9 @@ class HomePageState extends State<HomePage> {
 
   User? _selectedUser;
 
+  @override
+  ValueNotifier<User?> get notifier => profile.notifier;
+
   void onDestinationSelected(int index) {
     setState(() {
       title = titles[index];
@@ -56,7 +61,7 @@ class HomePageState extends State<HomePage> {
 
   void join() {
     RestClient(Dio())
-        .register(channelId: profile.val!.id, authorization: accessToken.val!)
+        .register(channelId: value!.id, authorization: accessToken.val!)
         .then((_) {
       if (!mounted) {
         return;
@@ -93,7 +98,7 @@ class HomePageState extends State<HomePage> {
       key: _scaffoldKey,
       floatingActionButton: _currentPage != 0
           ? null
-          : !_registered
+          : !_registered && value != null
               ? ElevatedButton.icon(
                   icon: const Icon(Icons.celebration),
                   label: const Text('Join'),

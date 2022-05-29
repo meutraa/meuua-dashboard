@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-import 'model/approval.dart';
 import 'model/channel_settings.dart';
 import 'model/command.dart';
 import 'model/twitch_user_response.dart';
@@ -47,7 +46,7 @@ abstract class RestClient {
   });
 
   @GET('/channels/{id}/approvals')
-  Future<List<Approval>> getApprovals({
+  Future<List<User>> getApprovals({
     @Path('id') required String channelId,
   });
 

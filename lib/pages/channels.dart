@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../api.dart';
 import '../avatar.dart';
 import '../main.dart';
+import '../mixin_value_notifier.dart';
 import '../model/user.dart';
 
 class ChannelsPage extends StatefulWidget {
@@ -23,8 +24,13 @@ class ChannelsPage extends StatefulWidget {
 }
 
 class ChannelsPageState extends State<ChannelsPage>
-    with AutomaticKeepAliveClientMixin {
+    with
+        AutomaticKeepAliveClientMixin,
+        ValueNotifierMixin<ChannelsPage, User?> {
   List<User>? _users;
+
+  @override
+  ValueNotifier<User?> get notifier => profile.notifier;
 
   @override
   bool get wantKeepAlive => _users != null;
@@ -36,24 +42,40 @@ class ChannelsPageState extends State<ChannelsPage>
       if (!mounted) {
         return;
       }
-      if (profile.val != null) {
-        try {
-          final user = users.firstWhere((user) => user.id == profile.val!.id);
-          // put the user matching profile.val first in the list of users
-          users
-            ..remove(user)
-            ..insert(0, user);
-          widget.onUserRegistered(true);
-          // ignore: avoid_catches_without_on_clauses
-        } catch (e) {
-          widget.onUserRegistered(false);
-        }
-      }
+
+      users = modifyUsers(users);
 
       setState(() => _users = users);
     });
 
     widget.registerNotifier.addListener(onRegister);
+  }
+
+  @override
+  void onChange() {
+    super.onChange();
+    setState(() => _users = modifyUsers(_users));
+  }
+
+  List<User> modifyUsers(List<User>? users) {
+    if (users == null) {
+      return [];
+    }
+    if (value != null) {
+      try {
+        final user = users.firstWhere((user) => user.id == value!.id);
+        // put the user matching profile.val first in the list of users
+        users
+          ..remove(user)
+          ..insert(0, user);
+        widget.onUserRegistered(true);
+        // ignore: avoid_catches_without_on_clauses
+      } catch (e) {
+        widget.onUserRegistered(false);
+      }
+    }
+
+    return users;
   }
 
   void onRegister() {
@@ -65,7 +87,7 @@ class ChannelsPageState extends State<ChannelsPage>
     }
 
     setState(() {
-      _users?.insert(0, profile.val!);
+      _users?.insert(0, value!);
     });
   }
 
@@ -103,7 +125,7 @@ class ChannelsPageState extends State<ChannelsPage>
 
     // ignore: unawaited_futures
     RestClient(Dio())
-        .unregister(channelId: profile.val!.id, authorization: accessToken.val!)
+        .unregister(channelId: value!.id, authorization: accessToken.val!)
         .then((_) {
       if (!mounted) {
         return;
@@ -138,7 +160,7 @@ class ChannelsPageState extends State<ChannelsPage>
       padding: const EdgeInsets.symmetric(vertical: 16),
       itemCount: _users?.length ?? 0,
       separatorBuilder: (context, index) {
-        final isSelf = index == 0 && _users![index].id == profile.val?.id;
+        final isSelf = index == 0 && _users![index].id == value?.id;
         return isSelf
             ? const Divider(
                 indent: 32,
@@ -147,7 +169,7 @@ class ChannelsPageState extends State<ChannelsPage>
             : const SizedBox.shrink();
       },
       itemBuilder: (context, index) {
-        final isSelf = index == 0 && _users![index].id == profile.val?.id;
+        final isSelf = index == 0 && _users![index].id == value?.id;
         return _users == null
             ? const Center(child: CircularProgressIndicator())
             : ListTile(

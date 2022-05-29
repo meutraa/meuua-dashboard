@@ -10,15 +10,15 @@ mixin ValueNotifierMixin<T extends StatefulWidget, S> on State<T> {
     super.initState();
     value = notifier.value;
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) => notifier.addListener(_onChange),
+      (_) => notifier.addListener(onChange),
     );
   }
 
   @override
   void dispose() {
-    notifier.removeListener(_onChange);
+    notifier.removeListener(onChange);
     super.dispose();
   }
 
-  void _onChange() => setState(() => value = notifier.value);
+  void onChange() => setState(() => value = notifier.value);
 }

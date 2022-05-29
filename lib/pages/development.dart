@@ -169,7 +169,7 @@ class DevelopmentPage extends StatelessWidget {
         ),
         Row(
           children: [
-            const Checkbox(value: false, onChanged: null),
+            const Checkbox(value: true, onChanged: null),
             Text(
               'View channel approvals',
               style: style,
@@ -187,7 +187,7 @@ class DevelopmentPage extends StatelessWidget {
         ),
         Row(
           children: [
-            const Checkbox(value: false, onChanged: null),
+            const Checkbox(value: true, onChanged: null),
             Text(
               'View channel commands',
               style: style,
@@ -234,6 +234,15 @@ class DevelopmentPage extends StatelessWidget {
           endIndent: 32,
           height: 24,
           color: Colors.white60,
+        ),
+        Row(
+          children: [
+            const Checkbox(value: false, onChanged: null),
+            Text(
+              'Configure bot banning',
+              style: style,
+            ),
+          ],
         ),
         Row(
           children: [

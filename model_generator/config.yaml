@@ -9,17 +9,6 @@ Command:
       required: true
       jsonKey: Template
 
-Approval:
-    properties:
-      channelId:
-        type: string
-        required: true
-        jsonKey: ChannelID
-      userId:
-        type: string
-        required: true
-        jsonKey: UserID
-
 ChannelSettings:
     properties:
       channelId:
