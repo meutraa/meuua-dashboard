@@ -78,16 +78,23 @@ class _MeuuaDrawerState extends State<MeuuaDrawer>
               ),
               const SizedBox(height: 8),
               DrawerItem(
-                title: 'FAQ',
-                leading: const Icon(Icons.question_answer),
+                title: 'Development',
+                leading: const Icon(Icons.developer_mode),
                 selected:
                     widget.currentPage == 3 && widget.selectedUser == null,
                 onTap: () => widget.onDestinationSelected(3),
               ),
+              DrawerItem(
+                title: 'FAQ',
+                leading: const Icon(Icons.question_answer),
+                selected:
+                    widget.currentPage == 4 && widget.selectedUser == null,
+                onTap: () => widget.onDestinationSelected(4),
+              ),
               const Spacer(),
               if (value != null)
                 ElevatedButton.icon(
-                  onPressed: logout,
+                  onPressed: () => logout(context),
                   label: const Text('Logout'),
                   icon: const Icon(Icons.logout),
                 ),

@@ -20,9 +20,12 @@ class CommandsPageState extends State<CommandsPage>
 
   @override
   void initState() {
-    RestClient(Dio())
-        .getGlobalCommands()
-        .then((List<Command> commands) => setState(() => _commands = commands));
+    RestClient(Dio()).getGlobalCommands().then((List<Command> commands) {
+      if (!mounted) {
+        return;
+      }
+      setState(() => _commands = commands);
+    });
     super.initState();
   }
 

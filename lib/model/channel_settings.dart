@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'null_date_time.dart';
 import 'null_string.dart';
 

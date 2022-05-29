@@ -49,9 +49,18 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
-              minimumSize: MaterialStateProperty.all(const Size(140, 52)),
+              minimumSize: MaterialStateProperty.all(const Size(128, 52)),
               backgroundColor: MaterialStateProperty.all(scheme.secondary),
               foregroundColor: MaterialStateProperty.all(scheme.onSecondary),
+              elevation: MaterialStateProperty.all(8),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(26),
+                  side: BorderSide(
+                    color: scheme.inversePrimary,
+                  ),
+                ),
+              ),
             ),
           ),
           switchTheme: SwitchThemeData(
@@ -60,6 +69,10 @@ class MyApp extends StatelessWidget {
           ),
           iconTheme: IconThemeData(
             color: scheme.primary,
+          ),
+          checkboxTheme: CheckboxThemeData(
+            fillColor: MaterialStateProperty.all(scheme.inversePrimary),
+            shape: const StadiumBorder(),
           ),
           typography: Typography.material2021(),
           appBarTheme: AppBarTheme(
@@ -70,7 +83,6 @@ class MyApp extends StatelessWidget {
             // surfaceTintColor: Colors.transparent,
             scrolledUnderElevation: 12,
             shadowColor: Colors.black,
-            surfaceTintColor: null,
             elevation: 12,
           ),
         ),

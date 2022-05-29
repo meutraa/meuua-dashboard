@@ -5,7 +5,29 @@ import 'package:url_launcher/url_launcher.dart';
 import 'api.dart';
 import 'main.dart';
 
-void logout() {
+Future<void> logout(BuildContext context) async {
+  final confirmed = await showDialog<bool>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: const Text('Logout'),
+      content: const Text('Are you sure you want to logout?'),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('Cancel'),
+          onPressed: () => Navigator.of(context).pop(false),
+        ),
+        TextButton(
+          child: const Text('Logout'),
+          onPressed: () => Navigator.of(context).pop(true),
+        ),
+      ],
+    ),
+  );
+
+  if (confirmed == null || !confirmed) {
+    return;
+  }
+
   accessToken.val = null;
   profile.val = null;
 }
@@ -28,6 +50,7 @@ void login(BuildContext context) {
   final TextEditingController _tokenController = TextEditingController();
   showDialog<void>(
     context: context,
+    barrierDismissible: false,
     builder: (context) => AlertDialog(
       title: const Text('Paste the access token from the URL'),
       content: TextField(

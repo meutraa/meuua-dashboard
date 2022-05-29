@@ -37,6 +37,9 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
 
   Future<void> getSettings() async {
     final settings = await RestClient(Dio()).getChannelSettings(widget.user.id);
+    if (!mounted) {
+      return;
+    }
     setState(() {
       if (settings.openaiToken.valid) {
         _openaiTokenController.text = settings.openaiToken.string;
@@ -207,6 +210,9 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                                 settings: _settings!,
                               )
                                   .then((settings) {
+                                if (!mounted) {
+                                  return;
+                                }
                                 setState(() {
                                   _settings = settings;
                                   _isSaving = false;
