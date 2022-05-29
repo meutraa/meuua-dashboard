@@ -40,8 +40,7 @@ class User {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  String toString() =>
-      'User{'
+  String toString() => 'User{'
       'id: $id, '
       'login: $login, '
       'displayName: $displayName, '
@@ -52,15 +51,14 @@ class User {
       'viewCount: $viewCount, '
       'createdAt: $createdAt'
       '}';
-
 }
 
 const deserializeUser = User.fromJson;
 
 Map<String, dynamic> serializeUser(User object) => object.toJson();
 
-List<User> deserializeUserList(List<Map<String, dynamic>> jsonList)
-    => jsonList.map(User.fromJson).toList();
+List<User> deserializeUserList(List<Map<String, dynamic>> jsonList) =>
+    jsonList.map(User.fromJson).toList();
 
-List<Map<String, dynamic>> serializeUserList(List<User> objects)
-    => objects.map((object) => object.toJson()).toList();
+List<Map<String, dynamic>> serializeUserList(List<User> objects) =>
+    objects.map((object) => object.toJson()).toList();

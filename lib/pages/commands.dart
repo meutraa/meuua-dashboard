@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:meuua/model/command.dart';
 
 import '../api.dart';
+import '../model/command.dart';
 
 class CommandsPage extends StatefulWidget {
   const CommandsPage({super.key});
@@ -31,14 +31,14 @@ class CommandsPageState extends State<CommandsPage>
     super.build(context);
     return ListView.builder(
       itemCount: _commands?.length ?? 0,
-      itemBuilder: ((context, index) => _commands == null
+      itemBuilder: (context, index) => _commands == null
           ? const CircularProgressIndicator()
           : ListTile(
               title: SelectableText(
                 _commands![index].name,
               ),
               subtitle: SelectableText(_commands![index].template),
-            )),
+            ),
     );
   }
 }

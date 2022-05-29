@@ -1,16 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:meuua/avatar.dart';
 
 import '../api.dart';
+import '../avatar.dart';
 import '../model/user.dart';
 
 class ChannelsPage extends StatefulWidget {
   final Function(User user) onUserSelected;
 
   const ChannelsPage({
-    super.key,
     required this.onUserSelected,
+    super.key,
   });
 
   @override
@@ -39,7 +39,7 @@ class ChannelsPageState extends State<ChannelsPage>
     super.build(context);
     return ListView.builder(
       itemCount: _users?.length ?? 0,
-      itemBuilder: ((context, index) => _users == null
+      itemBuilder: (context, index) => _users == null
           ? const CircularProgressIndicator()
           : ListTile(
               onTap: () => widget.onUserSelected(_users![index]),
@@ -50,10 +50,10 @@ class ChannelsPageState extends State<ChannelsPage>
               title: Text(_users![index].displayName),
               subtitle: Text(_users![index].description),
               trailing: Text(
-                "${_users![index].viewCount} views",
+                '${_users![index].viewCount} views',
                 style: const TextStyle(color: Colors.grey),
               ),
-            )),
+            ),
     );
   }
 }

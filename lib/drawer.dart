@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:meuua/avatar.dart';
-import 'package:meuua/main.dart';
-import 'package:meuua/mixin_value_notifier.dart';
 
 import 'auth.dart';
+import 'avatar.dart';
 import 'drawer_header.dart';
+import 'main.dart';
+import 'mixin_value_notifier.dart';
 import 'model/user.dart';
 
 class MeuuaDrawer extends StatefulWidget {
@@ -13,10 +13,10 @@ class MeuuaDrawer extends StatefulWidget {
   final Function(int) onDestinationSelected;
 
   const MeuuaDrawer({
-    super.key,
     required this.currentPage,
     required this.selectedUser,
     required this.onDestinationSelected,
+    super.key,
   });
 
   @override
@@ -103,7 +103,7 @@ class _MeuuaDrawerState extends State<MeuuaDrawer>
               const Spacer(),
               if (value != null)
                 ElevatedButton.icon(
-                  onPressed: () => logout(),
+                  onPressed: logout,
                   label: const Text('Logout'),
                   icon: const Icon(Icons.logout),
                 ),

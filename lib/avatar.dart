@@ -5,9 +5,9 @@ class Avatar extends StatelessWidget {
   final double size;
 
   const Avatar({
-    super.key,
     required this.url,
     required this.size,
+    super.key,
   });
 
   @override
@@ -18,7 +18,7 @@ class Avatar extends StatelessWidget {
         child: Builder(builder: (context) {
           if (url == null || url!.isEmpty) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Icon(
                 Icons.person,
                 color: Colors.grey,

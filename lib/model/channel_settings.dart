@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meuua/model/null_date_time.dart';
-import 'package:meuua/model/null_string.dart';
+
+import 'null_date_time.dart';
+import 'null_string.dart';
 
 part 'channel_settings.g.dart';
 
@@ -31,13 +32,13 @@ class ChannelSettings {
     required this.updatedAt,
   });
 
-  factory ChannelSettings.fromJson(Map<String, dynamic> json) => _$ChannelSettingsFromJson(json);
+  factory ChannelSettings.fromJson(Map<String, dynamic> json) =>
+      _$ChannelSettingsFromJson(json);
 
   Map<String, dynamic> toJson() => _$ChannelSettingsToJson(this);
 
   @override
-  String toString() =>
-      'ChannelSettings{'
+  String toString() => 'ChannelSettings{'
       'channelId: $channelId, '
       'autoReplyEnabled: $autoReplyEnabled, '
       'autoReplyFrequency: $autoReplyFrequency, '
@@ -46,15 +47,17 @@ class ChannelSettings {
       'createdAt: $createdAt, '
       'updatedAt: $updatedAt'
       '}';
-
 }
 
 const deserializeChannelSettings = ChannelSettings.fromJson;
 
-Map<String, dynamic> serializeChannelSettings(ChannelSettings object) => object.toJson();
+Map<String, dynamic> serializeChannelSettings(ChannelSettings object) =>
+    object.toJson();
 
-List<ChannelSettings> deserializeChannelSettingsList(List<Map<String, dynamic>> jsonList)
-    => jsonList.map(ChannelSettings.fromJson).toList();
+List<ChannelSettings> deserializeChannelSettingsList(
+        List<Map<String, dynamic>> jsonList) =>
+    jsonList.map(ChannelSettings.fromJson).toList();
 
-List<Map<String, dynamic>> serializeChannelSettingsList(List<ChannelSettings> objects)
-    => objects.map((object) => object.toJson()).toList();
+List<Map<String, dynamic>> serializeChannelSettingsList(
+        List<ChannelSettings> objects) =>
+    objects.map((object) => object.toJson()).toList();

@@ -4,7 +4,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'api.dart';
 import 'main.dart';
-import 'model/twitch_user_response.dart';
 
 void logout() {
   accessToken.val = null;
@@ -17,7 +16,7 @@ void login(BuildContext context) {
       scheme: 'https',
       host: 'id.twitch.tv',
       pathSegments: <String>['oauth2', 'authorize'],
-      queryParameters: {
+      queryParameters: <String, dynamic>{
         'response_type': 'token',
         'client_id': clientId,
         'redirect_uri': 'https://oauth.meuua.com',
@@ -25,8 +24,9 @@ void login(BuildContext context) {
       },
     ),
   );
-  TextEditingController _tokenController = TextEditingController();
-  showDialog(
+
+  final TextEditingController _tokenController = TextEditingController();
+  showDialog<void>(
     context: context,
     builder: (context) => AlertDialog(
       title: const Text('Paste the access token from the URL'),
@@ -45,9 +45,9 @@ void login(BuildContext context) {
           onPressed: () {
             Navigator.of(context).pop();
             RestClient(Dio())
-                .getProfile("Bearer ${_tokenController.text}", clientId)
+                .getProfile('Bearer ${_tokenController.text}', clientId)
                 .then(
-              (TwitchUserResponse res) {
+              (res) {
                 accessToken.val = _tokenController.text;
                 profile.val = res.data?.first;
               },

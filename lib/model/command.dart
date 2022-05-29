@@ -14,25 +14,24 @@ class Command {
     required this.template,
   });
 
-  factory Command.fromJson(Map<String, dynamic> json) => _$CommandFromJson(json);
+  factory Command.fromJson(Map<String, dynamic> json) =>
+      _$CommandFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommandToJson(this);
 
   @override
-  String toString() =>
-      'Command{'
+  String toString() => 'Command{'
       'name: $name, '
       'template: $template'
       '}';
-
 }
 
 const deserializeCommand = Command.fromJson;
 
 Map<String, dynamic> serializeCommand(Command object) => object.toJson();
 
-List<Command> deserializeCommandList(List<Map<String, dynamic>> jsonList)
-    => jsonList.map(Command.fromJson).toList();
+List<Command> deserializeCommandList(List<Map<String, dynamic>> jsonList) =>
+    jsonList.map(Command.fromJson).toList();
 
-List<Map<String, dynamic>> serializeCommandList(List<Command> objects)
-    => objects.map((object) => object.toJson()).toList();
+List<Map<String, dynamic>> serializeCommandList(List<Command> objects) =>
+    objects.map((object) => object.toJson()).toList();

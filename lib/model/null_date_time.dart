@@ -14,25 +14,27 @@ class NullDateTime {
     required this.valid,
   });
 
-  factory NullDateTime.fromJson(Map<String, dynamic> json) => _$NullDateTimeFromJson(json);
+  factory NullDateTime.fromJson(Map<String, dynamic> json) =>
+      _$NullDateTimeFromJson(json);
 
   Map<String, dynamic> toJson() => _$NullDateTimeToJson(this);
 
   @override
-  String toString() =>
-      'NullDateTime{'
+  String toString() => 'NullDateTime{'
       'time: $time, '
       'valid: $valid'
       '}';
-
 }
 
 const deserializeNullDateTime = NullDateTime.fromJson;
 
-Map<String, dynamic> serializeNullDateTime(NullDateTime object) => object.toJson();
+Map<String, dynamic> serializeNullDateTime(NullDateTime object) =>
+    object.toJson();
 
-List<NullDateTime> deserializeNullDateTimeList(List<Map<String, dynamic>> jsonList)
-    => jsonList.map(NullDateTime.fromJson).toList();
+List<NullDateTime> deserializeNullDateTimeList(
+        List<Map<String, dynamic>> jsonList) =>
+    jsonList.map(NullDateTime.fromJson).toList();
 
-List<Map<String, dynamic>> serializeNullDateTimeList(List<NullDateTime> objects)
-    => objects.map((object) => object.toJson()).toList();
+List<Map<String, dynamic>> serializeNullDateTimeList(
+        List<NullDateTime> objects) =>
+    objects.map((object) => object.toJson()).toList();

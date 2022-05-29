@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:meuua/pages/home.dart';
-import 'package:meuua/preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'model/user.dart';
+import 'pages/home.dart';
+import 'preference.dart';
 
 late Preference<String> accessToken;
 const clientId = 'v2ij52gemo7qxsyoqatw7vk883sk2k';
@@ -41,31 +41,34 @@ class MyApp extends StatelessWidget {
   );
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Meuua Dashboard',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: scheme,
-        brightness: Brightness.dark,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all(const Size(140, 52)),
-            backgroundColor: MaterialStateProperty.all(scheme.secondary),
-            foregroundColor: MaterialStateProperty.all(scheme.onSecondary),
+  Widget build(BuildContext context) => MaterialApp(
+        title: 'Meuua Dashboard',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: scheme,
+          brightness: Brightness.dark,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+              minimumSize: MaterialStateProperty.all(const Size(140, 52)),
+              backgroundColor: MaterialStateProperty.all(scheme.secondary),
+              foregroundColor: MaterialStateProperty.all(scheme.onSecondary),
+            ),
+          ),
+          switchTheme: SwitchThemeData(
+            thumbColor: MaterialStateProperty.all(scheme.primary),
+            trackColor: MaterialStateProperty.all(scheme.secondary),
+          ),
+          iconTheme: IconThemeData(
+            color: scheme.primary,
+          ),
+          typography: Typography.material2021(),
+          appBarTheme: AppBarTheme(
+            foregroundColor: Colors.white,
+            centerTitle: true,
+            elevation: 8,
+            backgroundColor: scheme.background,
           ),
         ),
-        switchTheme: SwitchThemeData(
-          thumbColor: MaterialStateProperty.all(scheme.primary),
-          trackColor: MaterialStateProperty.all(scheme.secondary),
-        ),
-        iconTheme: IconThemeData(
-          color: scheme.primary,
-        ),
-        typography: Typography.material2021(),
-        appBarTheme: AppBarTheme(color: Theme.of(context).canvasColor),
-      ),
-      home: const HomePage(),
-    );
-  }
+        home: const HomePage(),
+      );
 }

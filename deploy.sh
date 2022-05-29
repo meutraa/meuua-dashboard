@@ -3,6 +3,7 @@
 # flutter packages run model_generator
 # flutter pub run build_runner build
 #flutter build web --source-maps --profile --dart-define=Dart2jsOptimization=O0
+flutter format --fix lib
 flutter build web
 rsync -az --delete build/web/ moon:/home/paul/web/
 

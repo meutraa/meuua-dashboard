@@ -1,20 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:meuua/avatar.dart';
-import 'package:meuua/main.dart';
-import 'package:meuua/mixin_value_notifier.dart';
-import 'package:meuua/model/channel_settings.dart';
 
 import '../api.dart';
+import '../avatar.dart';
+import '../main.dart';
+import '../mixin_value_notifier.dart';
+import '../model/channel_settings.dart';
 import '../model/user.dart';
 
 class ChannelSettingsPage extends StatefulWidget {
   final User user;
 
   const ChannelSettingsPage({
-    super.key,
     required this.user,
+    super.key,
   });
 
   @override
@@ -36,7 +35,7 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
     getSettings();
   }
 
-  void getSettings() async {
+  Future<void> getSettings() async {
     final settings = await RestClient(Dio()).getChannelSettings(widget.user.id);
     setState(() {
       if (settings.openaiToken.valid) {
@@ -48,7 +47,6 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 720),
@@ -56,7 +54,6 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
               padding: const EdgeInsets.all(24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 24),
                   Avatar(url: widget.user.profileImageUrl, size: 192),
@@ -81,7 +78,6 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 24),
                       child: TextField(
-                        maxLines: 1,
                         enabled: value?.id == widget.user.id,
                         autocorrect: false,
                         controller: _openaiTokenController,
@@ -91,7 +87,6 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                   if (_settings != null)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Padding(
                           padding: EdgeInsetsDirectional.only(end: 16),
@@ -172,7 +167,7 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                           label:
                               '${(100 / _settings!.autoReplyFrequency).toStringAsFixed(0)}%',
                           max: 5,
-                          min: 1.0,
+                          min: 1,
                           divisions: 40,
                           value: _settings!.autoReplyFrequency,
                           onChanged: (val) {
@@ -208,15 +203,16 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                                   _settings = settings;
                                   _isSaving = false;
                                 });
-                              }).catchError((obj) {
+                              }).catchError((dynamic obj) {
                                 setState(() {
                                   _isSaving = false;
                                 });
                                 if (obj is DioError) {
+                                  final data = obj.response?.data as String?;
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
                                     content: Text(
-                                      obj.response?.data ??
+                                      data ??
                                           obj.response?.statusMessage
                                               ?.toString() ??
                                           'An error occurred',

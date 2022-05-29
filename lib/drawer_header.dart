@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meuua/avatar.dart';
-import 'package:meuua/main.dart';
-import 'package:meuua/mixin_value_notifier.dart';
+import 'avatar.dart';
+import 'main.dart';
+import 'mixin_value_notifier.dart';
 
-import 'auth.dart';
 import 'model/user.dart';
 
 class DrawerHeaderer extends StatefulWidget {
@@ -26,7 +25,6 @@ class _DrawererHeaderState extends State<DrawerHeaderer>
         child: DrawerHeader(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Avatar(url: value?.profileImageUrl, size: 96),
               const SizedBox(height: 16),

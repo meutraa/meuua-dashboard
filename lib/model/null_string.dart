@@ -14,25 +14,25 @@ class NullString {
     required this.valid,
   });
 
-  factory NullString.fromJson(Map<String, dynamic> json) => _$NullStringFromJson(json);
+  factory NullString.fromJson(Map<String, dynamic> json) =>
+      _$NullStringFromJson(json);
 
   Map<String, dynamic> toJson() => _$NullStringToJson(this);
 
   @override
-  String toString() =>
-      'NullString{'
+  String toString() => 'NullString{'
       'string: $string, '
       'valid: $valid'
       '}';
-
 }
 
 const deserializeNullString = NullString.fromJson;
 
 Map<String, dynamic> serializeNullString(NullString object) => object.toJson();
 
-List<NullString> deserializeNullStringList(List<Map<String, dynamic>> jsonList)
-    => jsonList.map(NullString.fromJson).toList();
+List<NullString> deserializeNullStringList(
+        List<Map<String, dynamic>> jsonList) =>
+    jsonList.map(NullString.fromJson).toList();
 
-List<Map<String, dynamic>> serializeNullStringList(List<NullString> objects)
-    => objects.map((object) => object.toJson()).toList();
+List<Map<String, dynamic>> serializeNullStringList(List<NullString> objects) =>
+    objects.map((object) => object.toJson()).toList();

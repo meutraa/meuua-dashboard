@@ -17,14 +17,16 @@ class FAQ {
 
 final faqs = <FAQ>[
   FAQ(
-    'Meuua doesn\'t reply to people',
-    '''The intelligent responses require an OpenAI access token to function.
+    "Meuua doesn't reply to people",
+    r'''
+The intelligent responses require an OpenAI access token to function.
             
-You can get one by visiting https://openai.com/api/ and creating an account. Current costs are around \$0.06 per ~750 words (prompt + response).''',
+You can get one by visiting https://openai.com/api/ and creating an account. Current costs are around $0.06 per ~750 words (prompt + response).''',
   ),
   FAQ(
     'Can I stop meuua sending random messages?',
-    '''Visit your channel in the channel list, and disable the "Auto Reply" feature. 
+    '''
+Visit your channel in the channel list, and disable the "Auto Reply" feature. 
 
 If you would prefer fewer messages, you can adjust the "Auto Reply Frequency" option instead.''',
   ),
@@ -46,32 +48,29 @@ class FAQPageState extends State<FAQPage> with AutomaticKeepAliveClientMixin {
               faqs[panelIndex].isExpanded = !isExpanded;
             });
           },
-          children: faqs.map((faq) {
-            return ExpansionPanel(
-              isExpanded: faq.isExpanded,
-              canTapOnHeader: true,
-              headerBuilder: (context, isExpanded) {
-                return ListTile(
-                  title: Text(faq.title),
-                );
-              },
-              body: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Flexible(
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                        bottom: 16,
-                        left: 16,
-                        right: 16,
-                      ),
-                      child: Text(faq.body),
+          children: faqs
+              .map((faq) => ExpansionPanel(
+                    isExpanded: faq.isExpanded,
+                    canTapOnHeader: true,
+                    headerBuilder: (context, isExpanded) => ListTile(
+                      title: Text(faq.title),
                     ),
-                  ),
-                ],
-              ),
-            );
-          }).toList(),
+                    body: Row(
+                      children: [
+                        Flexible(
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                              bottom: 16,
+                              left: 16,
+                              right: 16,
+                            ),
+                            child: Text(faq.body),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ))
+              .toList(),
         ),
       ),
     );
