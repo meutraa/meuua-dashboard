@@ -55,18 +55,27 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 24),
-                  Avatar(url: widget.user.profileImageUrl, size: 192),
                   const SizedBox(height: 16),
-                  Text(widget.user.displayName,
-                      style: Theme.of(context).textTheme.headline4),
+                  Avatar(
+                    url: widget.user.profileImageUrl,
+                    size: 160,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    widget.user.displayName,
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
                   const SizedBox(height: 8),
                   if (widget.user.description.isNotEmpty)
-                    Text(
-                      widget.user.description,
-                      style: Theme.of(context).textTheme.subtitle1,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        widget.user.description,
+                        style: Theme.of(context).textTheme.bodyText2,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  if (_settings != null) const SizedBox(height: 48),
+                  if (_settings != null) const SizedBox(height: 32),
                   if (_settings != null)
                     const ListTile(
                       title: Text('OpenAI Token'),
@@ -76,7 +85,7 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                     ),
                   if (_settings != null)
                     Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 24),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
                         enabled: value?.id == widget.user.id,
                         autocorrect: false,
@@ -88,10 +97,6 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Padding(
-                          padding: EdgeInsetsDirectional.only(end: 16),
-                          child: Icon(Icons.health_and_safety),
-                        ),
                         Text(
                           'Safety',
                           style: Theme.of(context).textTheme.headline5,
@@ -134,29 +139,32 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                             }
                           }),
                     ),
-                  if (_settings != null) const SizedBox(height: 48),
+                  if (_settings != null) const SizedBox(height: 32),
                   if (_settings != null)
-                    Text(
-                      'Auto Reply',
-                      style: Theme.of(context).textTheme.headline5,
+                    SwitchListTile(
+                      title: Text(
+                        'Auto Reply',
+                        style: Theme.of(context).textTheme.headline5,
+                        textAlign: TextAlign.center,
+                      ),
+                      inactiveTrackColor:
+                          Theme.of(context).colorScheme.background,
+                      value: _settings!.autoReplyEnabled,
+                      onChanged: (_) {
+                        if (value?.id == widget.user.id) {
+                          setState(() {
+                            _settings!.autoReplyEnabled =
+                                !_settings!.autoReplyEnabled;
+                          });
+                        }
+                      },
                     ),
                   if (_settings != null)
-                    if (_settings != null)
-                      SwitchListTile(
-                        title: const Text('Auto Reply'),
-                        subtitle: const Text(
-                          'With this enabled, meuua will send messages without being prompted',
-                        ),
-                        value: _settings!.autoReplyEnabled,
-                        onChanged: (_) {
-                          if (value?.id == widget.user.id) {
-                            setState(() {
-                              _settings!.autoReplyEnabled =
-                                  !_settings!.autoReplyEnabled;
-                            });
-                          }
-                        },
+                    const ListTile(
+                      subtitle: Text(
+                        'With this enabled, meuua will send messages without being prompted',
                       ),
+                    ),
                   if (_settings != null) const SizedBox(height: 16),
                   if (_settings != null)
                     ListTile(

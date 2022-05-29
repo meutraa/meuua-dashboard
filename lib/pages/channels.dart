@@ -38,6 +38,7 @@ class ChannelsPageState extends State<ChannelsPage>
   Widget build(BuildContext context) {
     super.build(context);
     return ListView.builder(
+      padding: const EdgeInsets.symmetric(vertical: 16),
       itemCount: _users?.length ?? 0,
       itemBuilder: (context, index) => _users == null
           ? const CircularProgressIndicator()

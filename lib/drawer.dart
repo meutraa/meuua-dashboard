@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'auth.dart';
 import 'avatar.dart';
 import 'drawer_header.dart';
+import 'drawer_item.dart';
 import 'main.dart';
 import 'mixin_value_notifier.dart';
 import 'model/user.dart';
@@ -35,70 +36,53 @@ class _MeuuaDrawerState extends State<MeuuaDrawer>
             listTileTheme: ListTileThemeData(
               selectedColor: Theme.of(context).colorScheme.surface,
               style: ListTileStyle.drawer,
-              selectedTileColor: Colors.deepOrange.shade100,
               iconColor: Colors.deepOrangeAccent.shade100,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(24),
-              ),
+              shape: const StadiumBorder(),
             ),
           ),
           child: Column(
             children: [
               const DrawerHeaderer(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: ListTile(
-                  selected: widget.currentPage == 0,
-                  onTap: () => widget.onDestinationSelected(0),
-                  title: const Text('Channels'),
-                  leading: const Icon(Icons.stream),
-                ),
+              DrawerItem(
+                title: 'Channels',
+                leading: const Icon(Icons.stream),
+                selected: widget.currentPage == 0,
+                onTap: () => widget.onDestinationSelected(0),
               ),
               const SizedBox(height: 8),
               if (widget.selectedUser != null)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ListTile(
-                    selected: widget.currentPage == 1,
-                    title: Text(widget.selectedUser!.displayName),
-                    leading: Avatar(
-                      size: 36,
-                      url: widget.selectedUser?.profileImageUrl,
-                    ),
+                DrawerItem(
+                  title: widget.selectedUser!.displayName,
+                  leading: Avatar(
+                    size: 36,
+                    url: widget.selectedUser?.profileImageUrl,
                   ),
+                  selected: widget.currentPage == 1,
+                  onTap: () {},
                 ),
               if (widget.selectedUser != null) const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: ListTile(
-                  selected:
-                      widget.currentPage == 1 && widget.selectedUser == null,
-                  onTap: () => widget.onDestinationSelected(1),
-                  title: const Text('Global Commands'),
-                  leading: const Icon(Icons.keyboard_command_key),
-                ),
+              DrawerItem(
+                title: 'Global Commands',
+                leading: const Icon(Icons.keyboard_command_key),
+                selected:
+                    widget.currentPage == 1 && widget.selectedUser == null,
+                onTap: () => widget.onDestinationSelected(1),
               ),
               const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: ListTile(
-                  selected:
-                      widget.currentPage == 2 && widget.selectedUser == null,
-                  onTap: () => widget.onDestinationSelected(2),
-                  title: const Text('Help'),
-                  leading: const Icon(Icons.help_center),
-                ),
+              DrawerItem(
+                title: 'Help',
+                leading: const Icon(Icons.help_center),
+                selected:
+                    widget.currentPage == 2 && widget.selectedUser == null,
+                onTap: () => widget.onDestinationSelected(2),
               ),
               const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: ListTile(
-                  selected:
-                      widget.currentPage == 3 && widget.selectedUser == null,
-                  onTap: () => widget.onDestinationSelected(3),
-                  title: const Text('FAQ'),
-                  leading: const Icon(Icons.question_answer),
-                ),
+              DrawerItem(
+                title: 'FAQ',
+                leading: const Icon(Icons.question_answer),
+                selected:
+                    widget.currentPage == 3 && widget.selectedUser == null,
+                onTap: () => widget.onDestinationSelected(3),
               ),
               const Spacer(),
               if (value != null)

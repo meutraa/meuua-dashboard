@@ -30,6 +30,7 @@ class CommandsPageState extends State<CommandsPage>
   Widget build(BuildContext context) {
     super.build(context);
     return ListView.builder(
+      padding: const EdgeInsets.symmetric(vertical: 16),
       itemCount: _commands?.length ?? 0,
       itemBuilder: (context, index) => _commands == null
           ? const CircularProgressIndicator()

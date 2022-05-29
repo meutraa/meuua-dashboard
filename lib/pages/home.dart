@@ -21,6 +21,7 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage>
     with ValueNotifierMixin<HomePage, User?> {
   int _currentPage = 0;
+  int _previousPage = 0;
   String title = 'Meuua';
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -46,6 +47,7 @@ class HomePageState extends State<HomePage>
           break;
       }
       _selectedUser = null;
+      _previousPage = _currentPage;
       _currentPage = index;
     });
     _scaffoldKey.currentState?.closeDrawer();
@@ -68,7 +70,19 @@ class HomePageState extends State<HomePage>
         }
         return null;
       }(context),
-      appBar: small ? AppBar(title: Text(title)) : null,
+      appBar: small
+          ? AppBar(
+              title: Text(title),
+              leading: _selectedUser != null
+                  ? IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () => onDestinationSelected(_previousPage),
+                    )
+                  : null,
+              // surfaceTintColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            )
+          : null,
       body: Row(
         children: [
           AdaptiveContainer(
@@ -90,6 +104,7 @@ class HomePageState extends State<HomePage>
                   setState(() {
                     title = user.displayName;
                     _selectedUser = user;
+                    _previousPage = _currentPage;
                     _currentPage = 1;
                   });
                   _scaffoldKey.currentState?.closeDrawer();

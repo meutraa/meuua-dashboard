@@ -40,7 +40,7 @@ class FAQPageState extends State<FAQPage> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     super.build(context);
     return Padding(
-      padding: const EdgeInsets.only(top: 24),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       child: SingleChildScrollView(
         child: ExpansionPanelList(
           expansionCallback: (panelIndex, isExpanded) {
