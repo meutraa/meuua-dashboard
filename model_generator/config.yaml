@@ -35,14 +35,6 @@ ChannelSettings:
         required: true
         jsonKey: OpenaiToken
         non_final: true
-      createdAt:
-        type: datetime
-        required: true
-        jsonKey: CreatedAt
-      updatedAt:
-        type: NullDateTime
-        required: true
-        jsonKey: UpdatedAt
 
 NullString:
   properties:
