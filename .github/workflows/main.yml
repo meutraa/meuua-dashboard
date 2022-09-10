@@ -16,6 +16,9 @@ jobs:
           channel: 'dev'
       - run: flutter config --enable-web
       - run: flutter pub get
+      - run: flutter packages run model_generator
+      - run: flutter pub run build_runner build
+      - run: flutter format --fix lib
       - run: flutter build web --release
       - run: |
           cd build/web
