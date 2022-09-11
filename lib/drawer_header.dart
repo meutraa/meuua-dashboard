@@ -31,7 +31,7 @@ class _DrawererHeaderState extends State<DrawerHeaderer>
               if (value != null)
                 Text(
                   value?.displayName ?? '',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
             ],
           ),

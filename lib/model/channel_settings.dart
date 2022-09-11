@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meuua/model/null_date_time.dart';
-import 'package:meuua/model/null_string.dart';
+import 'null_date_time.dart';
+import 'null_string.dart';
 
 part 'channel_settings.g.dart';
 

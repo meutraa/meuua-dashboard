@@ -46,7 +46,7 @@ class ChannelCommandsPageState extends State<ChannelCommandsPage>
         const SizedBox(height: 24),
         Text(
           'Commands',
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
           textAlign: TextAlign.center,
         ),
         const Divider(

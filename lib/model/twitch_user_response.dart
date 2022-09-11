@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meuua/model/user.dart';
+import 'user.dart';
 
 part 'twitch_user_response.g.dart';
 

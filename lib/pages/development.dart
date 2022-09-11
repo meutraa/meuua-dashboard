@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class DevelopmentPage extends StatelessWidget {
@@ -12,7 +11,7 @@ class DevelopmentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = Theme.of(context)
         .textTheme
-        .bodyText2
+        .bodyMedium
         ?.copyWith(color: Theme.of(context).colorScheme.onBackground);
 
     return ListView(
@@ -21,7 +20,7 @@ class DevelopmentPage extends StatelessWidget {
         // Add a richtext link to the source code here
         Text(
           'Source Code',
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
           textAlign: TextAlign.center,
         ),
         const Divider(
@@ -37,7 +36,7 @@ class DevelopmentPage extends StatelessWidget {
             children: [
               TextSpan(
                 text: 'Dashboard\n\n',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               TextSpan(
                 text: 'https://git.lost.host/meutraa/meuua-dashboard',
@@ -49,7 +48,7 @@ class DevelopmentPage extends StatelessWidget {
               ),
               TextSpan(
                 text: '\n\nServer\n\n',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               TextSpan(
                 text: 'https://git.lost.host/meutraa/meutraabot',
@@ -65,7 +64,7 @@ class DevelopmentPage extends StatelessWidget {
         const SizedBox(height: 24),
         Text(
           'Admin Dashboard Features',
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
           textAlign: TextAlign.center,
         ),
         const Divider(
@@ -113,7 +112,7 @@ class DevelopmentPage extends StatelessWidget {
         const SizedBox(height: 24),
         Text(
           'Dashboard Features',
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
           textAlign: TextAlign.center,
         ),
         const Divider(
@@ -226,7 +225,7 @@ class DevelopmentPage extends StatelessWidget {
         ),
         Text(
           'Server Features',
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
           textAlign: TextAlign.center,
         ),
         const Divider(

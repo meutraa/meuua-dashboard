@@ -1,7 +1,6 @@
+import 'package:adaptive_breakpoints/adaptive_breakpoints.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:adaptive_breakpoints/adaptive_breakpoints.dart';
-import 'package:adaptive_components/adaptive_components.dart';
 
 import '../api.dart';
 import '../avatar.dart';
@@ -79,7 +78,7 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                 const SizedBox(height: 16),
                 Text(
                   widget.user.displayName,
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 8),
                 if (widget.user.description.isNotEmpty)
@@ -87,7 +86,7 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       widget.user.description,
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.bodyMedium,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -115,7 +114,7 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                     children: [
                       Text(
                         'Safety',
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ],
                   ),
@@ -160,7 +159,7 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                   SwitchListTile(
                     title: Text(
                       'Auto Reply',
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineSmall,
                       textAlign: TextAlign.center,
                     ),
                     inactiveTrackColor:
@@ -245,7 +244,7 @@ class ChannelSettingsPageState extends State<ChannelSettingsPage>
                                         'An error occurred',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText1
+                                        .bodyLarge
                                         ?.copyWith(color: Colors.white),
                                   ),
                                   backgroundColor: Colors.red,

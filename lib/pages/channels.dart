@@ -144,7 +144,7 @@ class ChannelsPageState extends State<ChannelsPage>
                 'An error occurred',
             style: Theme.of(context)
                 .textTheme
-                .bodyText1
+                .bodyLarge
                 ?.copyWith(color: Colors.white),
           ),
           backgroundColor: Colors.red,

@@ -47,7 +47,7 @@ class ChannelApprovalsPageState extends State<ChannelApprovalsPage>
         const SizedBox(height: 24),
         Text(
           'Approved Bots',
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
           textAlign: TextAlign.center,
         ),
         const Divider(
